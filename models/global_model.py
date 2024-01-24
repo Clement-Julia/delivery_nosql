@@ -50,7 +50,7 @@ def get_avgviewers_graph(mysql):
     plt.plot(df['Annee'], df['Moyenne_Viewers'], marker='o', linestyle='-')
     plt.title('Moyenne de viewers par an')
     plt.xlabel('Année')
-    plt.ylabel('Moyenne des viewers (en milliers)')
+    plt.ylabel('Moyenne des viewers')
     plt.grid(True)
 
     # Format personnalisée pour l'axe des ordonnées
@@ -77,45 +77,29 @@ def get_records(mysql):
         'avg_channels': 'Moyenne de chaînes',
         'games_streamed': 'Nb de jeux streamés'
     }
-    month_translation = {
-        1: 'Janvier',
-        2: 'Février',
-        3: 'Mars',
-        4: 'Avril',
-        5: 'Mai',
-        6: 'Juin',
-        7: 'Juillet',
-        8: 'Août',
-        9: 'Septembre',
-        10: 'Octobre',
-        11: 'Novembre',
-        12: 'Décembre'
-    }
     stats = ['hours_watched', 'avg_viewers', 'peak_viewers', 'streams', 'avg_channels', 'games_streamed']
 
     for stat in stats:
         cur.execute(f"""
             SELECT
-                year, month, {stat} AS record
+                year, MAX({stat}) AS record
             FROM
                 global_data
-            WHERE
-                (year, {stat}) = (
-                    SELECT year, MAX({stat})
-                    FROM global_data
-                    GROUP BY year
-                    ORDER BY MAX({stat}) DESC
-                    LIMIT 1
-                )
+            GROUP BY
+                year
+            HAVING
+                record = (SELECT MAX({stat}) FROM global_data)
+            ORDER BY
+                year ASC
         """)
         data = cur.fetchall()
-        df = pd.DataFrame(data, columns=['year', 'month', 'record'])
+        df = pd.DataFrame(data, columns=['year', 'record'])
 
-        records[stat_translation[stat]] = {
-            'date': f"{month_translation[df['month'][0]]} {df['year'][0]}",
-            'record': df['record'][0]
-        }
+        # Ajouter le record et l'année correspondante au dictionnaire
+        records[stat_translation[stat]] = {'year': df['year'][0], 'record': df['record'][0]}
+
 
     cur.close()
 
+    print(records)
     return records
