@@ -2,8 +2,8 @@ import pandas as pd
 from pymongo import MongoClient
 
 df = pd.read_csv('./data/train.csv')
-client = MongoClient('localhost', 27017)
 
+client = MongoClient('localhost', 27017)
 db = client['food_delivery']
 collection = db['edf']
 
