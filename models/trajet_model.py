@@ -32,7 +32,13 @@ def get_typevehi_graph(collection):
         dict["count"].append(count)
 
     df = pd.DataFrame(dict)
-
+    df['Type_of_vehicle'] = df['Type_of_vehicle'].replace({
+        'bicycle ': 'Vélo',
+        'electric_scooter ': 'Scooter électrique',
+        'motorcycle ': 'Moto',
+        'scooter ': 'Scooter'
+    })
+    
     plt.figure(figsize=(9, 6))
     plt.pie(df['count'], labels=df['Type_of_vehicle'], autopct='%1.1f%%', startangle=120)
     plt.title('Répartition des types de véhicules')
@@ -47,18 +53,20 @@ def get_typevehi_graph(collection):
 
 def get_typecity_graph(collection):
 
-    cities = collection.distinct("City")
-    dict = {"City": [], "count": []}
+    df = get_df_clean(collection)
+    df = df.dropna(subset=['City'])
+    df['City'] = df['City'].replace({
+        'Metropolitian': 'Metropolitain',
+        'Semi-Urban': 'Semi Urbain',
+        'Urban': 'Urbain',
+    })
 
-    for city in cities:
-        count = collection.count_documents({"City": city})
-        dict["City"].append(city)
-        dict["count"].append(count)
-
-    df = pd.DataFrame(dict)
-
+    allowed_values = ['Metropolitain', 'Semi Urbain', 'Urbain']
+    filtered_df = df[df['City'].isin(allowed_values)]
+    city_counts = filtered_df['City'].value_counts()
+    
     plt.figure(figsize=(9, 6))
-    plt.pie(df['count'], labels=df['City'], autopct='%1.1f%%', startangle=122)
+    plt.pie(city_counts, labels=city_counts.index, autopct='%1.1f%%', startangle=90)
     plt.title('Répartition des types de villes')
 
     # Convertir le graphique en données base64
@@ -144,6 +152,13 @@ def get_vehi_graph(collection):
 def get_vehitime_moy(collection):
 
     df = get_df_clean(collection)
+    df['Type_of_vehicle'] = df['Type_of_vehicle'].replace({
+        'bicycle ': 'Vélo',
+        'electric_scooter ': 'Scooter électrique',
+        'motorcycle ': 'Moto',
+        'scooter ': 'Scooter'
+    })
+
     avg_delivery = df.groupby('Type_of_vehicle')['Time_taken(min)'].mean().reset_index()
     avg_delivery['Time_taken(min)'] = avg_delivery['Time_taken(min)'].round(1)
 
@@ -152,11 +167,16 @@ def get_vehitime_moy(collection):
 def get_citytime_moy(collection):
 
     df = get_df_clean(collection)
-    df_filtered = df.dropna(subset=['Weatherconditions'])
+    df_filtered = df.dropna(subset=['City'])
 
-    allowed_values = ["Metropolitian", "Semi-Urban", "Urban"]
+    df_filtered['City'] = df_filtered['City'].replace({
+        'Metropolitian': 'Metropolitain',
+        'Semi-Urban': 'Semi Urbain',
+        'Urban': 'Urbain',
+    })
+
+    allowed_values = ["Metropolitain", "Semi Urbain", "Urbain"]
     df_filtered = df_filtered[df_filtered['City'].isin(allowed_values)]
-
     avg_delivery = df_filtered.groupby('City')['Time_taken(min)'].mean().reset_index()
     avg_delivery['Time_taken(min)'] = avg_delivery['Time_taken(min)'].round(1)
 
