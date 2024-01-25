@@ -1,6 +1,13 @@
 Script de création de la DB dans MongoDB : "python .\scripts\create_db.py"
 À noter que les valeurs NaN ne sont pas incluses dans les graphiques.
 
+Partie "Livreurs" : 
+ - Deux points numériques qui démontrent la note moyenne de tous les livreurs
+ - Répartition des livreur par tranches d'age
+ - Temps de livraison moyen en fonction des tranches d'age
+ - Note moyenne des livreurs en fonction des tranches d'ages
+
+Le premier graphique montre une répartition plutôt equivalente entre les tranches d'ages. Avec ces tranches nous avons deux autre graphiques qui démontre le temps de livraison moyen par tranches d'ages, afin de déterminé quel tranches d'age est plus susceptible d'avoir un temps de livraison plus long, de même pour les notes moyenne, cependant les notes dont plus ou moins équivalentes en fonction des tranches d'ages
 
 Partie "Distance" :
 La partie 
