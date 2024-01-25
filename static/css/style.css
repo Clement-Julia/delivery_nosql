@@ -123,6 +123,11 @@ footer {
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
+
+.graph-maxw {
+    /* width: 600px; */
+    width: 100%;
+}
 /* -------------------- SWITCH -------------------- */
 .switch-container {
     display: flex;

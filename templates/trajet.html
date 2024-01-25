@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Trajet{% endblock %}
+
+{% block content %}
+<div class="card-body p-0 pb-1">
+    <div class="card-header bg-violetTwitch p-3 m-0">
+        <h5 class="card-title text-white m-0">Données générales de trajet</h5>
+    </div>
+
+    <div class="cardStats py-2">
+        <div class="divGraphs">
+            <div class="divGraphsRow flex-wrap col-12">
+                <img class="col-12 col-md-6" src="data:image/png;base64,{{ graphs_dict['graph_circ_vehi'] }}" width="600">
+                <img class="col-12 col-md-6" src="data:image/png;base64,{{ graphs_dict['graph_circ_city'] }}" width="600">
+            </div>
+            <div class="d-flex justify-content-around flex-wrap dark mb-3">
+                <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-6">
+                    <h4>Temps moyen de livraison par véhicule :</h4>
+                    <ul>
+                        {% for index, row in avg_dict['avg_vehitime'].iterrows() %}
+                            <li>{{ row['Type_of_vehicle'] }} : {{ row['Time_taken(min)'] }} minutes</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-between col-12 col-md-6">
+                    <h4>Temps moyen de livraison par ville :</h4>
+                    <ul>
+                        {% for index, row in avg_dict['avg_citytime'].iterrows() %}
+                            <li>{{ row['City'] }} : {{ row['Time_taken(min)'] }} minutes</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap">
+
+    <div class="card-body p-1 col-12 col-lg-6">
+        <div class="card-header bg-violetTwitch p-3 m-0">
+            <h5 class="card-title text-white m-0">Temps moyen de livraison en minutes</h5>
+        </div>
+        <div class="cardStats py-2">
+            <div class="d-flex flex-wrap justify-content-center px-2 mt-4 w-100">
+                <img class="col-12 graph-maxw" src="{{ graphs_dict['graph_avgtemps'] }}" width="600">
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-1 col-12 col-lg-6">
+        <div class="card-header bg-violetTwitch p-3 m-0">
+            <h5 class="card-title text-white m-0">Temps de livraison selon le traffic routier</h5>
+        </div>
+        <div class="cardStats py-2">
+            <div class="d-flex flex-wrap justify-content-center px-2 mt-4 w-100">
+                <img class="col-12 col-lg-6 graph-maxw" src="{{ graphs_dict['graph_density'] }}" width="600">
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-1 col-12 col-lg-6">
+        <div class="card-header bg-violetTwitch p-3 m-0">
+            <h5 class="card-title text-white m-0">Temps de livraison selon le type de véhicule</h5>
+        </div>
+        <div class="cardStats py-2">
+            <div class="d-flex flex-wrap justify-content-center px-2 mt-4 w-100">
+                <img class="col-12 col-lg-6 graph-maxw" src="{{ graphs_dict['graph_vehi'] }}" width="600">
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-1 col-12 col-lg-6">
+        <div class="card-header bg-violetTwitch p-3 m-0">
+            <h5 class="card-title text-white m-0">Temps de livraison selon les conditions météorologiques</h5>
+        </div>
+        <div class="cardStats py-2">
+            <div class="d-flex flex-wrap justify-content-center px-2 mt-4 w-100">
+                <img class="col-12 col-lg-6 graph-maxw" src="{{ graphs_dict['graph_weather'] }}" width="600">
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
