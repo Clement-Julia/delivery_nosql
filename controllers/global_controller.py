@@ -1,25 +1,10 @@
 from flask import render_template, request, redirect, url_for, session
-from models.global_model import get_years, get_hrswatchd_graph, get_avgviewers_graph, get_records
+from models.global_model import *
 
 class GlobalController:
     def __init__(self):
-        self.graph_type = None
-        
-    def index(self, mysql):
-        years = get_years(mysql)
-        
-        graph_type = session.get('graph_type', 'Heures Vues')
-        switch_checked = graph_type != 'Heures Vues'
-        if graph_type == 'Heures Vues':
-            graph_url = get_hrswatchd_graph(mysql)
-            switch_label = "Voir moyenne de viewers"
-        else:
-            graph_url = get_avgviewers_graph(mysql)
-            switch_label = "Voir nombre d'heures vues"
+        test = ""
 
-        records = get_records(mysql)
-        return render_template('global.html', years=years, graph_url=graph_url, switch_checked=switch_checked, switch_label=switch_label, records=records)
-    
     def toggle_graph(self):
         graph_type = session.get('graph_type', 'Heures Vues')
         if graph_type == 'Heures Vues':
@@ -27,3 +12,20 @@ class GlobalController:
         else:
             session['graph_type'] = 'Heures Vues'
         return redirect(url_for('global_vue'))
+    
+    def distance(self):
+        chart_histo = plot_reception_histogram()
+        chart_livraison = plot_livraison_histogram()
+        chart_avg_recep = get_average_reception_by_picked_date()
+        chart_avg_livr = get_average_livraison_by_picked_date()
+        chart_distance = calculate_distance()
+        chart_livraison_diff = calculate_distance_by_traffic()
+
+        return render_template('distance.html',
+                               chart_histo=chart_histo,
+                               chart_livraison=chart_livraison,
+                               chart_livraison_density=chart_livraison_diff,
+                               chart_avg_recep=chart_avg_recep,
+                               chart_avg_livr=chart_avg_livr,
+                               chart_distance=chart_distance
+                            )

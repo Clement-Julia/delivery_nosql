@@ -2,10 +2,6 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-center mb-5">
-    <img src="/static/images/logoTwitch2.png" class="logoTwitch" alt="Logo">
-</div>
-
 <div class="card-body p-0">
     <div class="card-header bg-dark p-3 m-0">
         <h1 class="txtStyle2 text-white m-0">Facteur impactant la vitesse de livraisons des commandes clientes</h1>
@@ -14,14 +10,21 @@
     <div class="cardStats pt-4 pb-2">
         <div class="divSpace">
             <div class="row">
-                {# <a class="btn__valo btn__valo--green me-3 text-decoration-none btn" href="{{ url_for('global_vue') }}"> #}
+                <a class="btn__valo btn__valo--green me-3 text-decoration-none btn" href="{{ url_for('Livreur') }}">
                     <span class="btn__inner">
                         <span class="btn__slide__green"></span>
-                        <span class="btn__content"><i class="fa-solid fa-circle-user fa-xl me-2"></i>Stats globales</span>
+                        <span class="btn__content"><i class="fa-solid fa-circle-user fa-xl me-2"></i>Stats livreurs</span>
                     </span>
                 </a>
                 
-                <a class="btn__valo btn__valo--red text-decoration-none btn" href="{{ url_for('trajet_vue') }}">
+                <a class="btn__valo btn__valo--red text-decoration-none btn" href="{{ url_for('distance') }}">
+                    <span class="btn__inner">
+                        <span class="btn__slide__red"></span>
+                        <span class="btn__content"><i class="fa-solid fa-file-invoice fa-xl me-2"></i>Distance</span>
+                    </span>
+                </a>
+
+                <a class="btn__valo btn__valo--blue text-decoration-none btn" href="{{ url_for('trajet_vue') }}">
                     <span class="btn__inner">
                         <span class="btn__slide__red"></span>
                         <span class="btn__content"><i class="fa-solid fa-traffic-light fa-xl me-2"></i>Trajet</span>
