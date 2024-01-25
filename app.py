@@ -1,4 +1,5 @@
 from controllers.global_controller import GlobalController
+from controllers.livreur_controller import LivreurController
 import pandas as pd
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 from flask_mysqldb import MySQL
@@ -22,10 +23,11 @@ app = Flask(__name__)
 def accueil():
     return render_template('accueil.html')
 
-@app.route('/global', methods=['GET'])
-def global_vue():
-    global_controller = GlobalController()
-    return global_controller.index(mysql)
+@app.route('/livreur')
+def Livreur():
+    livreur_controller = LivreurController()
+    return livreur_controller.index()
+
 
 @app.route('/toggle_graph', methods=['POST'])
 def toggle_graph():
