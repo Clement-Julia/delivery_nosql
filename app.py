@@ -1,3 +1,5 @@
+from controllers.global_controller import GlobalController
+from controllers.livreur_controller import LivreurController
 from controllers.trajet_controller import TrajetController
 import pandas as pd
 from flask import Flask, request, render_template, jsonify, redirect, url_for
@@ -20,6 +22,11 @@ app = Flask(__name__)
 @app.route('/')
 def accueil():
     return render_template('accueil.html')
+
+@app.route('/livreur')
+def Livreur():
+    livreur_controller = LivreurController()
+    return livreur_controller.index()
 
 @app.route('/trajet', methods=['GET'])
 def trajet_vue():
