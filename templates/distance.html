@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Distance{% endblock %}
+{% block content %}
+    <div class="row justify-content-between">
+        <div id="recup" class="card col-6 p-0 mb-4">
+            <div class="card-body d-flex justify-content-center p-0">
+                {% if chart_histo %}
+                    <img src="data:image/png;base64,{{ chart_histo }}" style="width: 640px; height: 480px;">
+                {% endif %}
+            </div>
+        </div>
+        <div id="livraison" class="card col-6 p-0 mb-4">
+            <div class="card-body d-flex justify-content-center p-0">
+                {% if chart_livraison %}
+                    <img src="data:image/png;base64,{{ chart_livraison }}" style="width: 640px; height: 480px;">
+                {% endif %}
+            </div>
+        </div>
+
+        <div id="average_receip" class="col-6">
+            <div class="card card-stats l-bg-blue-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large">
+                        <i class="fas fa-solid fa-hourglass-start"></i>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Temps moyen réception</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 id="nbToFormat" class="d-flex align-items-center mb-0"> {{ chart_avg_recep }} min</h2>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="average_livraison" class="col-6">
+            <div class="card card-stats l-bg-green-dark">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large">
+                        <i class="fas fa-solid fa-hourglass-end"></i>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Temps moyen livraison</h5>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 id="nbToFormat" class="d-flex align-items-center mb-0"> {{ chart_avg_livr }} min</h2>
+                        </div>
+                    </div>
+                    <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                        <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="distance_density" class="card col-6 p-0 mb-4">
+            <div class="card-body d-flex justify-content-center p-0">
+                {% if chart_histo %}
+                    <img src="data:image/png;base64,{{ chart_livraison_density }}" style="width: 640px; height: 480px;">
+                {% endif %}
+            </div>
+        </div>
+        <div id="distance" class="card col-6 p-0 mb-4">
+            <div class="card-body d-flex justify-content-center p-0">
+                {% if chart_distance %}
+                    <img src="data:image/png;base64,{{ chart_distance }}" style="width: 640px; height: 480px;">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ super () }} 
+    <script type='text/javascript'>
+    </script>
+{% endblock %}

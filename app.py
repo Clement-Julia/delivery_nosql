@@ -36,5 +36,10 @@ def toggle_graph():
 def format_number(value):
     return '{:,}'.format(value)
 
+@app.route('/distance')
+def distance():
+    global_controller = GlobalController()
+    return global_controller.distance()
+
 if __name__ == '__main__':
     app.run(debug=True, host="localhost", port="5005")
