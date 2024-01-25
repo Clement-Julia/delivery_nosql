@@ -10,7 +10,17 @@ Partie "Livreurs" :
 Le premier graphique montre une répartition plutôt equivalente entre les tranches d'ages. Avec ces tranches nous avons deux autre graphiques qui démontre le temps de livraison moyen par tranches d'ages, afin de déterminé quel tranches d'age est plus susceptible d'avoir un temps de livraison plus long, de même pour les notes moyenne, cependant les notes dont plus ou moins équivalentes en fonction des tranches d'ages
 
 Partie "Distance" :
-La partie 
+    La partie "Distance" a pour objectif de mettre en valeur le temps entre chaque étape de la livraison.
+    
+    Étape de réception : La première étape débute dès que le livreur reçoit les informations de commande et s'achève au moment où il réceptionne la commande auprès du restaurateur.
+    
+    Étape de livraison : La deuxième étape englobe le moment où le livreur réceptionne la commande jusqu'à son arrivée sur le lieu de livraison finale.
+    
+    Cette section se subdivise en trois parties :
+    
+        - La première se compose de deux graphiques illustrant la répartition des différentes durées pour chaque étape.
+        - La deuxième présente la moyenne de temps pour chaque étape.
+        - La dernière partie expose deux graphiques, l'un sur l'évolution du temps en fonction de la distance parcourue, et l'autre sur l'évolution du temps par rapport au trafic.
 
 Partie 'Trajet' :
  - La majorité des livreurs utilise une moto (58%) pour assurer leurs livraisons, suivis par le scooter (33.5%), le scooter électrique (8.4%) puis le vélo (0.1%).
