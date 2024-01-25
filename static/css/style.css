@@ -123,6 +123,11 @@ footer {
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
+
+.graph-maxw {
+    /* width: 600px; */
+    width: 100%;
+}
 /* -------------------- SWITCH -------------------- */
 .switch-container {
     display: flex;
@@ -562,4 +567,12 @@ html {
 .l-bg-cyan {
     background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
     color: #fff;
+<<<<<<< HEAD
+=======
+}
+/* ---------------------------------- */
+.custom-image {
+    width: 100%;
+    /* padding: 150px; */
+>>>>>>> da66f4b6fb3ac214244850aca579b277b3e65538
 }

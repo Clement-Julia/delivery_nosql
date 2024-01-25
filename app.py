@@ -1,7 +1,8 @@
 from controllers.global_controller import GlobalController
+from controllers.livreur_controller import LivreurController
+from controllers.trajet_controller import TrajetController
 import pandas as pd
 from flask import Flask, request, render_template, jsonify, redirect, url_for
-from flask_mysqldb import MySQL
 import json
 import matplotlib.pyplot as plt
 import io
@@ -22,19 +23,24 @@ app = Flask(__name__)
 def accueil():
     return render_template('accueil.html')
 
-@app.route('/global', methods=['GET'])
-def global_vue():
-    global_controller = GlobalController()
-    return global_controller.index(mysql)
+@app.route('/livreur')
+def Livreur():
+    livreur_controller = LivreurController()
+    return livreur_controller.index()
 
-@app.route('/toggle_graph', methods=['POST'])
-def toggle_graph():
-    global_controller = GlobalController()
-    return global_controller.toggle_graph()
+@app.route('/trajet', methods=['GET'])
+def trajet_vue():
+    trajet_controller = TrajetController()
+    return trajet_controller.index()
 
-@app.template_filter('format')
-def format_number(value):
-    return '{:,}'.format(value)
+# @app.route('/toggle_graph', methods=['POST'])
+# def toggle_graph():
+#     global_controller = GlobalController()
+#     return global_controller.toggle_graph()
+
+# @app.template_filter('format')
+# def format_number(value):
+#     return '{:,}'.format(value)
 
 @app.route('/distance')
 def distance():
