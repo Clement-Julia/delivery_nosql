@@ -15,9 +15,35 @@ def get_df_clean(collection):
 
     # Nettoyage de la colonne 'Weatherconditions'
     df['Weatherconditions'] = df['Weatherconditions'].apply(lambda x: x.replace('conditions', '').strip())
+    # Nettoyage et traduction de la colonne 'Type_of_vehicle'
+    df['Weatherconditions'] = df['Weatherconditions'].replace({
+        'Sunny': 'Ensoleillé',
+        'Windy': 'Venteux',
+        'Cloudy': 'Nuageux',
+        'Fog': 'Brumeux',
+        'Stormy': 'Tempête',
+        'Sandstorms': 'Tempête de sable'
+    })
 
     # Nettoyage de la colonne 'City'
     df['City'] = df['City'].str.strip()
+
+    # Nettoyage et traduction de la colonne 'Type_of_vehicle'
+    df['Type_of_vehicle'] = df['Type_of_vehicle'].replace({
+        'bicycle ': 'Vélo',
+        'electric_scooter ': 'Scooter électrique',
+        'motorcycle ': 'Moto',
+        'scooter ': 'Scooter'
+    })
+
+    # Traduction de la colonne 'Road_traffic_density'
+    df['Road_traffic_density'] = df['Road_traffic_density'].replace({
+        'Low ': 'Bas',
+        'Medium ': 'Moyen',
+        'High ': 'Haut',
+        'Jam ': 'Embouteillage'
+    })
+
 
     return df
 
@@ -103,7 +129,7 @@ def get_density_graph(collection):
     df_filtered = df.dropna(subset=['Road_traffic_density'])
     df_filtered['Road_traffic_density'] = df_filtered['Road_traffic_density'].str.strip()
 
-    order = ["Low", "Medium", "High", "Jam"]
+    order = ["Bas", "Moyen", "Haut", "Embouteillage"]
 
     plt.figure(figsize=(12, 6))
     sns.barplot(x='Road_traffic_density', y='Time_taken(min)', data=df_filtered, order=order, color='#fc3721', errorbar=None)
@@ -119,9 +145,9 @@ def get_density_graph(collection):
 def get_weather_graph(collection):
 
     df = get_df_clean(collection)
-
+    print(df["Weatherconditions"])
     df_filtered = df.dropna(subset=['Weatherconditions'])
-    order = ['Sunny', 'Windy', 'Cloudy', 'Fog', 'Stormy', 'Sandstorms']
+    order = ['Ensoleillé', 'Venteux', 'Nuageux', 'Brumeux', 'Tempête', 'Tempête de sable']
 
     plt.figure(figsize=(12, 6))
     sns.barplot(x='Weatherconditions', y='Time_taken(min)', data=df_filtered, order=order, color='#f5c842', errorbar=None)
@@ -137,7 +163,7 @@ def get_weather_graph(collection):
 def get_vehi_graph(collection):
 
     df = get_df_clean(collection)
-
+    
     plt.figure(figsize=(12, 6))
     sns.boxplot(x='Time_taken(min)', y='Type_of_vehicle', data=df, color='#12ffb4')
     #plt.title('Relation entre le type de véhicule et le temps de livraison')
