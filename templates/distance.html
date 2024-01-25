@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Distance{% endblock %}
 {% block content %}
-    <div class="row justify-content-between">
-        <div id="recup" class="card col-6 p-0 mb-4">
+    <div class="row justify-content-around">
+        <div id="recup" class="card col-lg-5 p-0 mb-5">
             <div class="card-body d-flex justify-content-center p-0">
                 {% if chart_histo %}
-                    <img src="data:image/png;base64,{{ chart_histo }}" style="width: 640px; height: 480px;">
+                    <img class="img-fluid rounded" src="data:image/png;base64,{{ chart_histo }}">
                 {% endif %}
             </div>
         </div>
-        <div id="livraison" class="card col-6 p-0 mb-4">
+        <div id="livraison" class="card col-lg-5 p-0 mb-5">
             <div class="card-body d-flex justify-content-center p-0">
                 {% if chart_livraison %}
-                    <img src="data:image/png;base64,{{ chart_livraison }}" style="width: 640px; height: 480px;">
+                    <img class="img-fluid rounded" src="data:image/png;base64,{{ chart_livraison }}">
                 {% endif %}
             </div>
         </div>
 
-        <div id="average_receip" class="col-6">
-            <div class="card card-stats l-bg-blue-dark">
+        <div id="average_receip" class="col-lg-5">
+            <div class="card card-stats l-bg-blue-dark mb-5">
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large">
                         <i class="fas fa-solid fa-hourglass-start"></i>
@@ -37,8 +37,8 @@
                 </div>
             </div>
         </div>
-        <div id="average_livraison" class="col-6">
-            <div class="card card-stats l-bg-green-dark">
+        <div id="average_livraison" class="col-lg-5">
+            <div class="card card-stats l-bg-green-dark mb-5">
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large">
                         <i class="fas fa-solid fa-hourglass-end"></i>
@@ -58,17 +58,17 @@
             </div>
         </div>
         
-        <div id="distance_density" class="card col-6 p-0 mb-4">
+        <div id="distance_density" class="card col-lg-5 p-0 mb-5">
             <div class="card-body d-flex justify-content-center p-0">
                 {% if chart_histo %}
-                    <img src="data:image/png;base64,{{ chart_livraison_density }}" style="width: 640px; height: 480px;">
+                    <img class="img-fluid rounded" src="data:image/png;base64,{{ chart_livraison_density }}">
                 {% endif %}
             </div>
         </div>
-        <div id="distance" class="card col-6 p-0 mb-4">
+        <div id="distance" class="card col-lg-5 p-0 mb-5">
             <div class="card-body d-flex justify-content-center p-0">
                 {% if chart_distance %}
-                    <img src="data:image/png;base64,{{ chart_distance }}" style="width: 640px; height: 480px;">
+                    <img class="img-fluid rounded" src="data:image/png;base64,{{ chart_distance }}">
                 {% endif %}
             </div>
         </div>

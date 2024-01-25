@@ -2,8 +2,8 @@ Script de création de la DB dans MongoDB : "python .\scripts\create_db.py"
 À noter que les valeurs NaN ne sont pas incluses dans les graphiques.
 
 
-
-
+Partie "Distance" :
+La partie 
 
 Partie 'Trajet' :
  - La majorité des livreurs utilise une moto (58%) pour assurer leurs livraisons, suivis par le scooter (33.5%), le scooter électrique (8.4%) puis le vélo (0.1%).
